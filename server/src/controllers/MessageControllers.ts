@@ -4,7 +4,7 @@ import Message from "../models/MessageModel";
 import User from "../models/UserModel";
 import serverExports from "../socket/socket";
 
-const { app, server, io, getReceiverSocketId } = serverExports;
+const { io, getReceiverSocketId } = serverExports;
 
 export const sendMessage = async (req: Request, res: Response) => {
   try {
@@ -38,9 +38,8 @@ export const sendMessage = async (req: Request, res: Response) => {
     await Promise.all([conversation.save(), newMessage.save()]);
 
     const receiverSocketId = getReceiverSocketId(receiverId);
-    if (receiverSocketId) {
+    if (receiverSocketId)
       io.to(receiverSocketId).emit("newMessage", newMessage);
-    }
 
     res.status(200).json(message);
   } catch (error) {

@@ -1,11 +1,11 @@
 import express, { Express } from "express";
 import { createServer } from "http";
-import { Server } from "socket.io";
+import { Server as SocketIOServer } from "socket.io";
 
 const app: Express = express();
 
 const server = createServer(app);
-const io = new Server(server, {
+const io = new SocketIOServer(server, {
   cors: {
     origin: ["http://localhost:3000"],
     credentials: true,
@@ -36,11 +36,9 @@ io.on("connection", (socket) => {
   });
 });
 
-const exportsObject = {
+export default {
   app,
   server,
   io,
   getReceiverSocketId,
 };
-
-export default exportsObject;

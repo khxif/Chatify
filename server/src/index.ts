@@ -7,7 +7,7 @@ import MessageRoutes from "./routes/MessageRoutes";
 import UserRoutes from "./routes/UserRoutes";
 import serverExports from "./socket/socket";
 
-const { app, server, io, getReceiverSocketId } = serverExports;
+const { app, server } = serverExports;
 
 dotenv.config();
 const PORT = process.env.PORT || 4000;
