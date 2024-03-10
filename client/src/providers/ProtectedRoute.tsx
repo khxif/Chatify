@@ -1,18 +1,27 @@
 "use client";
 
+import { useUserStore } from "@/store/userStore";
 import { getCookie } from "cookies-next";
-import { redirect } from "next/navigation";
-import { useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
+import { ReactNode, useLayoutEffect } from "react";
 
-export default function ProtectedRoute({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ProtectedRoute({ children }: { children: ReactNode }) {
+  const router = useRouter();
   const token = getCookie("user");
+  const user = useUserStore((state) => state.user);
 
-  useEffect(() => {
-    if (!token) redirect("/login");
-  }, [token]);
+  useLayoutEffect(() => {
+    if (!token || !user) router.push("/login");
+
+    try {
+      const decoded: User = jwtDecode(token as string);
+
+      if (user?.username !== decoded.username) router.push("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  }, [router, token, user]);
+
   return <>{children}</>;
 }

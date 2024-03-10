@@ -1,4 +1,4 @@
-import UserButton from "../UserButton";
+import UserButton from "./UserButton";
 import Logo from "./Logo";
 
 export default function Header() {

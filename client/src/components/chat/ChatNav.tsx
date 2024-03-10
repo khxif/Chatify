@@ -1,8 +1,8 @@
-import SearchBar from "../SearchBar";
+import SearchBar from "./SearchBar/SearchBar";
 
 export default function ChatNav() {
   return (
-    <header className="flex items-center justify-end w-full  p-4">
+    <header className="flex items-center justify-end w-full p-4">
       <SearchBar className="max-w-fit" />
     </header>
   );

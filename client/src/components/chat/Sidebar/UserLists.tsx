@@ -9,7 +9,7 @@ import { getCookie } from "cookies-next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
-const UserAvatar = dynamic(() => import("@/components/UserAvatar"), {
+const UserAvatar = dynamic(() => import("@/components/home/UserAvatar"), {
   ssr: false,
   loading: () => (
     <Skeleton className="rounded-full w-12 h-12 bg-slate-400/40" />

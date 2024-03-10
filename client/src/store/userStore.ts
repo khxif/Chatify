@@ -10,6 +10,7 @@ export const useUserStore = create<UserStore, [["zustand/persist", UserStore]]>(
     {
       name: "user",
       storage: createJSONStorage(() => localStorage),
+      skipHydration: true,
     }
   )
 );

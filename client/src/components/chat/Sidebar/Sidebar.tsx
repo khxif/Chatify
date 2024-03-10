@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import Logo from "../../home/Logo";
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "@/components/chat/SearchBar/SearchBar";
 
 const UserLists = dynamic(() => import("./UserLists"));
 
