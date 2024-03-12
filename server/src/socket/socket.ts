@@ -7,7 +7,7 @@ const app: Express = express();
 const server = createServer(app);
 const io = new SocketIOServer(server, {
   cors: {
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000", "https://chatify-khxif.vercel.app"],
     credentials: true,
   },
 });
