@@ -8,6 +8,8 @@ const server = createServer(app);
 const io = new SocketIOServer(server, {
   cors: {
     origin: ["http://localhost:3000", "https://chatify-khxif.vercel.app"],
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   },
 });
