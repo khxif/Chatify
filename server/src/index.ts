@@ -5,9 +5,7 @@ import mongoose from "mongoose";
 import AuthRoutes from "./routes/AuthRoutes";
 import MessageRoutes from "./routes/MessageRoutes";
 import UserRoutes from "./routes/UserRoutes";
-import serverExports from "./socket/socket";
-
-const { app, server } = serverExports;
+import { app, server } from "./socket/socket";
 
 dotenv.config();
 const PORT = process.env.PORT || 4000;
@@ -23,10 +21,6 @@ app.use("/api/auth", AuthRoutes);
 app.use("/api/user", UserRoutes);
 app.use("/api/message", MessageRoutes);
 
-app.get("/", (req, res) => {
-  res.send("hi");
-});
-
 mongoose
   .connect(process.env.MONGO_URL!)
   .then(() => {
@@ -35,6 +29,8 @@ mongoose
       console.log(`Server running on PORT: ${PORT}`);
     });
   })
-  .catch(() => {
-    console.log("MongoDB Error!");
+  .catch((error) => {
+    console.log("MongoDB Error:" + error);
   });
+
+module.exports = app;

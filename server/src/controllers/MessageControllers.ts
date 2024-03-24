@@ -2,10 +2,7 @@ import { Request, Response } from "express";
 import Conversation from "../models/ConversationModel";
 import Message from "../models/MessageModel";
 import User from "../models/UserModel";
-import serverExports from "../socket/socket";
-
-const { io, getReceiverSocketId } = serverExports;
-
+import { getReceiverSocketId, io } from "../socket/socket";
 export const sendMessage = async (req: Request, res: Response) => {
   try {
     const { message } = req.body;
